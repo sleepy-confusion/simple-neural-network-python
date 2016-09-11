@@ -1,5 +1,8 @@
 # simple-neural-network-python
 
-This is just a program I made while learning about machine learning, it has only three layers in the first iteration. The datasets used for training and testing were acquired from the MNIST datasets as of 9/1/2016. A simple conversion script(UConverter.py) is included to make them easier to read and use.
+This is just a simple 3 layer neural network I made while playing around in python.
+It is designed to recognize handwritten numbers from the MNIST datasets available online.
 
-The basic neural network only has three layers, an input layer, a hidden layer, and the output layer. Tweaking the number of nodes, epochs(training cycles), and learning rate have great effect on the network (unless you have a FAST computer I wouldn't recommend too many epochs, <10)
+Included is a setup script that will automatically download, unarchive, convert, and remove the old files to setup the files needed to run the neural network.
+
+Once the setup script is run, you can then modify the parameters of the testNetwork.py file to train and test the network while seeing how well it performs. With a little tweaking the network can be easily loaded into another program or even have it's link weights saved in a db or text file.
