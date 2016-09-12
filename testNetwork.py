@@ -20,9 +20,8 @@ tc = 5
 net = neuralNet(input_nodes, hidden_nodes, output_nodes, learning_rate)
 
 # loading the data for training up
-training_data_file = open("train.csv", "r")
-training_list = training_data_file.readlines()
-training_data_file.close()
+with open('train.csv','r') as data:
+    training_list = data.readlines()
 
 for i in range(tc):
     # Commence training
@@ -38,9 +37,8 @@ for i in range(tc):
         net.train(inputs, targets)
 
 # load the testing data
-test_data_file = open("test.csv", "r")
-test_list = test_data_file.readlines()
-test_data_file.close()
+with open("test.csv", "r") as data:
+    test_list = data.readlines()
 
 # scorecard for network's performance recording
 scorecard = []
