@@ -13,13 +13,14 @@ import matplotlib.pyplot # for visualization
 class neuralNet:
     
     # default constructor/initialization
-    def __init__(self, inputNodes, hiddenNodes, outputNodes,
-                learningRate):
+    def __init__(self, inputNodes, outputNodes,
+                learningRate, training):
         
         # Set the number of nodes in the input, hidden, 
         # and output layers
+        self.alpha = 1 # used to determine hidden nodes
         self.inodes = inputNodes
-        self.hnodes = hiddenNodes
+        self.hnodes = int(training/(self.alpha*(inputNodes+outputNodes)))
         self.onodes = outputNodes
         
         # Set the learning rate for dampening
