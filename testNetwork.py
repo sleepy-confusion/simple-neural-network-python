@@ -7,21 +7,23 @@ from neuralnetwork.neuralnetwork import neuralNet
 
 # Number of nodes or each layer
 input_nodes = 784 # one for each pixel in the 28x28 pixel images
-hidden_nodes = 200 # increased by 50
+# hidden_nodes = 200 # now using a calculation based on training sets
 output_nodes = 10 # one for each possible output
 
 # learning rate for dampening the learning to prevent overshoot
 learning_rate = 0.2
 
 # number of training cycles or Epochs
-tc = 5
+tc = 4
 
 # now to create the network
-net = neuralNet(input_nodes, hidden_nodes, output_nodes, learning_rate)
+net = neuralNet(input_nodes, output_nodes, learning_rate, 60000)
+# net = neuralNet2(input_nodes, output_nodes, learning_rate, 60000)
 
 # loading the data for training up
-with open('train.csv','r') as data:
-    training_list = data.readlines()
+training_data_file = open("train.csv", "r")
+training_list = training_data_file.readlines()
+training_data_file.close()
 
 for i in range(tc):
     # Commence training
@@ -37,11 +39,12 @@ for i in range(tc):
         net.train(inputs, targets)
 
 # load the testing data
-with open("test.csv", "r") as data:
-    test_list = data.readlines()
+test_data_file = open("test.csv", "r")
+test_list = test_data_file.readlines()
+test_data_file.close()
 
 # scorecard for network's performance recording
-scorecard = []
+accuracy = []
 
 # go through each record
 for record in test_list:
@@ -59,12 +62,12 @@ for record in test_list:
     #print(label, "Network's answer")
     # append correct or incorrect to list
     if (label == clabel):
-        scorecard.append(1)
+        accuracy.append(1)
     else:
-        scorecard.append(0)
+        accuracy.append(0)
     pass
 
 # calculate and display network accuracy
-scorecard_array = numpy.asarray(scorecard)
-accuracy = scorecard_array.sum()/scorecard_array.size*100
-print("Accuracy Performance = ", accuracy,"%")
+accuracy_array = numpy.asarray(accuracy)
+accuracy_per = accuracy_array.sum()/accuracy_array.size*100
+print("Accuracy Performance = ", accuracy_per,"%")
